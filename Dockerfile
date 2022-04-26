@@ -35,5 +35,6 @@ RUN pecl install -o -f redis \
 
 # Set working directory
 WORKDIR /var/www
-
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 USER $user
