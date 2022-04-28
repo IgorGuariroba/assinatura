@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    public function index()
+    public function checkout()
     {
-        return view('subscriptions.index');
+        return view('Subscriptions.checkout');
     }
 
     public function store(Request $request)
@@ -23,6 +23,6 @@ class SubscriptionController extends Controller
 
     public function premium()
     {
-        return view('subscriptions.premium');
+        return view('Subscriptions.premium');
     }
 }

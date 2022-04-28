@@ -15,3 +15,7 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+   const stripe = Stripe("{{config('cashier.key')}}}");
+</script>
