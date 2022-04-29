@@ -9,7 +9,9 @@ class SubscriptionController extends Controller
 {
     public function checkout()
     {
-        return view('Subscriptions.checkout');
+        return view('Subscriptions.checkout',[
+            'intent' => auth()->user()->createSetupIntent(),
+        ]);
     }
 
     public function store(Request $request)

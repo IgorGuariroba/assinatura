@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function (){
     Route::get('/inscricao', [SubscriptionController::class, 'checkout'], function (){})->name('subscription.checkout');
     Route::get('/premium', [SubscriptionController::class, 'premium'], function (){})->name('subscription.premium');
+    Route::get('/store', [SubscriptionController::class, 'store'], function (){})->name('subscription.store');
 });
 
 require __DIR__.'/auth.php';
