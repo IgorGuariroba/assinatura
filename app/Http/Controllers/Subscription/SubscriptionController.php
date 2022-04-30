@@ -9,6 +9,9 @@ class SubscriptionController extends Controller
 {
     public function checkout()
     {
+        if(auth()->user()->subscribed('default'))
+            return redirect()->route('subscription.premium');
+
         return view('Subscriptions.checkout',[
             'intent' => auth()->user()->createSetupIntent(),
         ]);
@@ -20,11 +23,14 @@ class SubscriptionController extends Controller
             ->newSubscription('default', 'price_1Kt0lhC4z7yx5elfjLr0XzYE')
             ->create($request->token);
 
-        return redirect()->route('subscriptions.premium');
+        return redirect()->route('subscription.premium');
     }
 
     public function premium()
     {
+        if(!auth()->user()->subscribed('default'))
+            return redirect()->route('subscription.checkout');
+
         return view('Subscriptions.premium');
     }
 }

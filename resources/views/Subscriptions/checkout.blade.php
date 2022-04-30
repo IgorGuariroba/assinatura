@@ -67,13 +67,17 @@
         );
 
         if (error) {
-            alert('errrou');
-            console.log(error);
-        } else {
-            console.log(setupIntent);
-            alert('ok');
+            console.log(error)
+            return;
         }
 
+        let token = document.createElement('input')
+        token.setAttribute('type','hidden')
+        token.setAttribute('name','token')
+        token.setAttribute('value',setupIntent.payment_method)
+        form.appendChild(token)
+
+        form.submit()
     });
 
 </script>
