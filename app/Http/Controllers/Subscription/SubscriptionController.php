@@ -9,9 +9,6 @@ class SubscriptionController extends Controller
 {
     public function checkout()
     {
-        if(auth()->user()->subscribed('default'))
-            return redirect()->route('subscription.premium');
-
         return view('Subscriptions.checkout',[
             'intent' => auth()->user()->createSetupIntent(),
         ]);
