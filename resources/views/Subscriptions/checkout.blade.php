@@ -42,7 +42,7 @@
 </x-app-layout>
 
 <script>
-    const stripe = Stripe("{{config('cashier.key')}}}");
+    const stripe = Stripe("{{ config('cashier.key') }}");
     const elements = stripe.elements();
     const cardElement = elements.create('card');
     cardElement.mount('#card-element');
@@ -55,7 +55,6 @@
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
         const {setupIntent, error} = await stripe.confirmCardSetup(
             clientSecret, {
                 payment_method: {
