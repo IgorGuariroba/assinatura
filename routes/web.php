@@ -23,11 +23,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/inscricao', [SubscriptionController::class, 'checkout'], function (){})->name('subscription.checkout');
+    Route::get('/inscricao', [SubscriptionController::class, 'checkout'])->name('subscription.checkout');
+    Route::get('/assinatura', [SubscriptionController::class, 'account'])->name('subscription.account');
+    Route::get('/ativa', [SubscriptionController::class, 'resume'])->name('subscription.resume');
 
     Route::middleware(['subscription'])->group(function (){
-        Route::get('/premium', [SubscriptionController::class, 'premium'], function (){})->name('subscription.premium');
-        Route::post('/store', [SubscriptionController::class, 'store'], function (){})->name('subscription.store');
+        Route::get('/premium', [SubscriptionController::class, 'premium'])->name('subscription.premium');
+        Route::post('/store', [SubscriptionController::class, 'store'])->name('subscription.store');
+        Route::get('/invoice/{invoice}', [SubscriptionController::class, 'invoiceDownload'])->name('subscription.invoice.download');
+        Route::get('/cancela', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
     });
 });
 
