@@ -12,13 +12,15 @@ class SubscriptionController extends Controller
     {
         return view('Subscriptions.checkout',[
             'intent' => auth()->user()->createSetupIntent(),
+            'plan' => session('plan')
         ]);
     }
 
     public function store(Request $request)
     {
+        $plan = session('plan');
         $request->user()
-            ->newSubscription('default', 'price_1Kt0lhC4z7yx5elfjLr0XzYE')
+            ->newSubscription('default', $plan->stripe_id)
             ->create($request->token);
 
         return redirect()->route('subscription.premium');

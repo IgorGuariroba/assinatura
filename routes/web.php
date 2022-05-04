@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[SiteController::class,'index'])->name('home');
+Route::get('/',[SiteController::class,'index'])->name('site.home')->middleware(['check.choice.plan']);
+Route::get('/assinar/{url}',[SiteController::class,'createSessionPlan'])->name('choice.plan');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,7 +29,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::middleware(['subscription'])->group(function (){
         Route::get('/premium', [SubscriptionController::class, 'premium'])->name('subscription.premium');
-        Route::post('/store', [SubscriptionController::class, 'store'])->name('subscription.store');
+        Route::post('/store', [SubscriptionController::class, 'store'])->name('subscription.store')->middleware(['check.choice.plan']);
         Route::get('/invoice/{invoice}', [SubscriptionController::class, 'invoiceDownload'])->name('subscription.invoice.download');
         Route::get('/cancela', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
     });
