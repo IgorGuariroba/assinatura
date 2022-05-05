@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[SiteController::class,'index'])->name('site.home')->middleware(['check.choice.plan']);
+Route::get('/',[SiteController::class,'index'])->name('site.home');
 Route::get('/assinar/{url}',[SiteController::class,'createSessionPlan'])->name('choice.plan');
 
 Route::get('/dashboard', function () {
