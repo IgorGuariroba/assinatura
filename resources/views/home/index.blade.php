@@ -28,6 +28,7 @@
         </main>
         @include('home._partials.footer')
     </div>
-</body>
+    <script src="{{asset('js/app.js')}}"></script>
 
+</body>
 </html>
